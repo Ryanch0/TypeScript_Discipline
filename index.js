@@ -91,3 +91,25 @@ const EX9 = (teacher) => {
 };
 let animal2;
 let animal = { name: '22', age: 40 };
+const girl = {
+    name: 'Ruah'
+};
+// Literal types 변수에 뭐가 들어올지 값까지 더 엄격하게 관리가능 & 자동완성 힌트
+let qwe;
+let me;
+function ddd(a) {
+    return 1;
+}
+ddd('hello');
+const EXfunc = (x) => {
+    const arr = [];
+    arr.push(x);
+    return arr;
+};
+EXfunc("가위");
+let file = {
+    name: 'kim'
+}; // as const를 사용하므로써 object value값을 그대로 타입으로 지정 & readonly로 바꿔줌
+const ff = (a) => {
+};
+ff(file.name); // 이 에러를 해결 가능

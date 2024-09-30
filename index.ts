@@ -112,8 +112,54 @@ const EX9 = (teacher: { subject: string | string[] }): string => {
 // 변수에 타입 담기 'type alias' 남이봤을때 보기 좋은코드를 만드세요(작명포함, 대문자시작)
 type AnimalType = string | number | undefined
 type AnimalType2 = {
-    name : string,
-    age : number
+    name: string,
+    age: number
 }
-let animal2 : AnimalType
-let animal :AnimalType2 = {name : '22', age : 40}
+let animal2: AnimalType
+let animal: AnimalType2 = { name: '22', age: 40 }
+
+// readonly 사용하면 obj 혹은 arr 자료형의 참조형 내부 값을 변경못하도록 할 수 있음 (ts파일에서만 그냥 경고를 줌)
+type GirlType = {
+    readonly name?: string
+}
+const girl: GirlType = {
+    name: 'Ruah'
+}
+// girl.name = 'Ruahna' // 에러남
+
+// type alias 서로 합쳐서 유니온 타입으로 변경도 가능
+type Name = string
+type Age = number
+type Perseon = Name | Age
+
+// obj 타입을 서로 합칠수도 있음(extend) '& 연산자 사용'
+type PositionX = { x: number }
+type PositionY = { y: number }
+type CombinedPosition = PositionX & PositionY // {x : number, y :number}
+// type alias는 재정의 불가능하다
+
+type ExType = { color?: string, size: number, readonly position: number[] }
+
+// Literal types 변수에 뭐가 들어올지 값까지 더 엄격하게 관리가능 & 자동완성 힌트
+let qwe: 123
+let me: 'bold' | 'super'
+function ddd(a: 'hello'): 1 | 0 {
+    return 1
+}
+ddd('hello')
+
+const EXfunc = (x: '가위' | '바위' | '보'): ('가위' | '바위' | '보')[] => {
+    const arr = []
+    arr.push(x)
+    return arr
+}
+EXfunc("가위")
+
+let file = {
+    name : 'kim'
+} as const // as const를 사용하므로써 object value값을 그대로 타입으로 지정 & readonly로 바꿔줌
+
+const ff = (a : 'kim') => { // a : 'kim'은 타입자체를 'kim'으로 지정해버리는것
+
+}
+ff(file.name) // 이 에러를 해결 가능
