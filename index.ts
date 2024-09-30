@@ -156,10 +156,34 @@ const EXfunc = (x: '가위' | '바위' | '보'): ('가위' | '바위' | '보')[]
 EXfunc("가위")
 
 let file = {
-    name : 'kim'
+    name: 'kim'
 } as const // as const를 사용하므로써 object value값을 그대로 타입으로 지정 & readonly로 바꿔줌
 
-const ff = (a : 'kim') => { // a : 'kim'은 타입자체를 'kim'으로 지정해버리는것
+const ff = (a: 'kim') => { // a : 'kim'은 타입자체를 'kim'으로 지정해버리는것
 
 }
 ff(file.name) // 이 에러를 해결 가능
+
+// 함수 타입의 type alias
+type funcType = (a: string) => number //return type 지정이 number
+const functionEX: funcType = (a) => { return 1 } // 이런식으로 타입지정
+
+type CutType = (a: string) => string
+const cutZero: CutType = (a) => {
+    if (a[0] === '0') {
+        return a.slice(1)
+    } else return a
+}
+
+type RemoveType = (a: string) => number
+const removeDash: RemoveType = (a) => {
+    const num = a.replace(/-/g, '')
+    return parseInt(num)
+}
+// 콜백함수를 타입 지정하기
+type FinalType = (num: string, cutFx: typeof cutZero, removeFx: typeof removeDash) => number
+const finalFunc: FinalType = (num, cutFx, removeFx) => {
+    const result = cutFx(num)
+    return removeFx(result)
+}
+finalFunc('010-1111-2222', cutZero, removeDash)

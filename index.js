@@ -113,3 +113,20 @@ let file = {
 const ff = (a) => {
 };
 ff(file.name); // 이 에러를 해결 가능
+const functionEX = (a) => { return 1; }; // 이런식으로 타입지정
+const cutZero = (a) => {
+    if (a[0] === '0') {
+        return a.slice(1);
+    }
+    else
+        return a;
+};
+const removeDash = (a) => {
+    const num = a.replace(/-/g, '');
+    return parseInt(num);
+};
+const finalFunc = (num, cutFx, removeFx) => {
+    const result = cutFx(num);
+    return removeFx(result);
+};
+finalFunc('010-1111-2222', cutZero, removeDash);
