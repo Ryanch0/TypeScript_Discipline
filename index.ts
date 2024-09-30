@@ -39,7 +39,7 @@ const EX = (x: number): number => { // 뒤의 number는 return 값의 타입
 }
 
 const EX2 = (x?: number): void => { // void는 return 없을때 사용, 실수로 return하는것을 잡아줌
-    x * 2                         // ?는 옵션임 ==> x : number | undefined 와 같음
+    if (x) { x * 2 }                      // ?는 옵션임 ==> x : number | undefined 와 같음
 }
 EX2() // x?이기 때문에 매개변수 없이 함수 선언 가능
 
@@ -148,12 +148,13 @@ function ddd(a: 'hello'): 1 | 0 {
 }
 ddd('hello')
 
-const EXfunc = (x: '가위' | '바위' | '보'): ('가위' | '바위' | '보')[] => {
-    const arr = []
+type SissorType = ('가위' | '바위' | '보')
+const EXfunc = (x: SissorType): SissorType[] => {
+    const arr: SissorType[] = []
     arr.push(x)
     return arr
 }
-EXfunc("가위")
+EXfunc('가위')
 
 let file = {
     name: 'kim'
@@ -187,3 +188,29 @@ const finalFunc: FinalType = (num, cutFx, removeFx) => {
     return removeFx(result)
 }
 finalFunc('010-1111-2222', cutZero, removeDash)
+
+
+// TS에서 HTML 변경 조작 주의
+let title = document.querySelector('#title');
+if (title !== null) { // 셀렉터로 HTML을 찾으면 NUll일수도 있기때문에 Narrowing 필요
+    title.innerHTML = 'hiiiii'
+}
+if (title instanceof Element) { // 이 방법으로 가장 많이 HTML 조작 Narrowing함
+    title.innerHTML = 'hiiiii'
+}
+if (title?.innerHTML) { // ?로 조건문으로 처리하던가
+    title.innerHTML = 'helloooo'
+}
+// let title = document.querySelector('#title') as Element // 이런 방법도 존재 100% 확신할때만..
+
+let link = document.querySelector('.link')
+if (link instanceof HTMLAnchorElement) { // 링크 주소 바꾸려면
+    link.href = 'kakao.com'
+}
+let btn = document.querySelector('#button') // event달기
+let img = document.querySelector('#image')
+btn?.addEventListener('click', () => {
+    if(img instanceof HTMLSourceElement){
+        img.src = 'new.jpg'
+    }
+})
