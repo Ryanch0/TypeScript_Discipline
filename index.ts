@@ -214,3 +214,33 @@ btn?.addEventListener('click', () => {
         img.src = 'new.jpg'
     }
 })
+
+
+
+// // 클래스 문법 일반 자바스크립트
+// class Lol { // 오브젝트 쉽게 만들수있음
+//     constructor(x,y){
+//         this.q = x
+//         this.w = y
+//     }
+// }
+// //프로토타입
+// Lol.prototype.hello = 'Ryan' // Lol클래스로 생성된 모든 객체에 hello라는 prototype이 생성됨
+// const nunu = new Lol('consume', 'strike')
+// console.log(nunu)
+
+class Person {
+    name:string //필드, 타입지정 가능
+    age:number
+    constructor(name:string,age:number){
+        this.name = name //TS에서 오브젝트 키값을 선언할때 위에 필드값을 지정해줘야함
+        this.age = age
+    }
+
+    test(w:string):void{ // TS에서 프로토타입 작성하는 방법
+        console.log('hello' + w)
+    }
+
+}
+let man = new Person('sungwoo',90)
+let man2 = new Person('ryan',28)
