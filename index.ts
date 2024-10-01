@@ -244,3 +244,66 @@ class Person {
 }
 let man = new Person('sungwoo',90)
 let man2 = new Person('ryan',28)
+//클래스 예제
+type WordType = (number|string)
+class Word {
+    num
+    str
+    constructor(...args:WordType[]){
+        let numType:number[] = []
+        let strType:string[] = []
+        args.forEach(item => {
+            if(typeof item === 'number'){
+                numType.push(item)
+            } else if(typeof item === 'string'){
+                strType.push(item)
+            }
+        })
+
+        this.num = numType
+        this.str = strType
+
+    }
+}
+const testObj = new Word('kim',3,5,'park')
+console.log(testObj.num) // [3,5]
+console.log(testObj.str) // ['kim', 'park']
+
+//interface         //obj 타입지정할때 주로 사용
+interface Square  {color : string, width : number}
+interface SquareExtend extends Square {
+    height : number
+}
+let box:Square = {color : 'red', width : 300}
+let box2:SquareExtend = {height : 333, color : 'white', width : 400}
+
+
+type Animal = {name : string}
+type Cat = {age : number} & Animal // {age : number, name : string}
+
+// interface의 extend와 , type의 & 기호 사용이 뭐가 다른가?
+// 똑같이 작용함.
+
+// 하지만 interface는 중복선언을 허용함 (타입이 합쳐짐) <-> 타입은 중복선언 불가(엄격함)
+interface Hi {
+    name : string
+}
+interface Hi {
+    age : number
+}
+// 여기서 Hi의 타입선언은 {name : string, age : number}이 됨
+
+
+interface FX {
+    plus : (x:number, y: number) => number,
+    minus : (x:number, y: number) => number,
+ }
+ 
+ const objEx:FX = { // interface로 함수타입도 타입지정가능
+    plus(x,y){
+       return x+y
+    },
+    minus(x, y){
+       return x-y
+    }
+ }

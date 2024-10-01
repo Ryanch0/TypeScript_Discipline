@@ -177,3 +177,32 @@ class Person {
 }
 let man = new Person('sungwoo', 90);
 let man2 = new Person('ryan', 28);
+class Word {
+    constructor(...args) {
+        let numType = [];
+        let strType = [];
+        args.forEach(item => {
+            if (typeof item === 'number') {
+                numType.push(item);
+            }
+            else if (typeof item === 'string') {
+                strType.push(item);
+            }
+        });
+        this.num = numType;
+        this.str = strType;
+    }
+}
+const testObj = new Word('kim', 3, 5, 'park');
+console.log(testObj.num); // [3,5]
+console.log(testObj.str); // ['kim', 'park']
+let box = { color: 'red', width: 300 };
+let box2 = { height: 333, color: 'white', width: 400 };
+const objEx = {
+    plus(x, y) {
+        return x + y;
+    },
+    minus(x, y) {
+        return x - y;
+    }
+};
