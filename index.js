@@ -223,7 +223,7 @@ const fishFx = (animal) => {
 // class 필드값
 // private : extends 된 class에서 사용 불가능, 자식들 사용 불가능
 // protected : extends 돤 class에서 사용 가능, 자식들 사용 불가능
-// static : 부모 class에서만 사용가능, 자식들에게 복사 안됨
+// static : 부모 class에서만 사용가능, 자식들에게 복사 안됨 // 클래스이름.x 이런식으로만 접근가능
 class User {
     constructor() {
         this.intro = User.skill + ' Expert';
@@ -235,3 +235,16 @@ User.skill = 'Ps';
 let child2 = new User();
 console.log(chlid);
 console.log(child2);
+// Generic function
+const GenericFunction = (x) => {
+    return x[0];
+};
+GenericFunction([4, 2]); // 4
+GenericFunction(['haha', 'ho']); // 'haha'
+// Generic function의 제한
+function GenericFx(x) {
+    return x.length;
+}
+GenericFx([4, 3, 5]);
+GenericFx('abcdefg');
+// GenericFx(123) // error
