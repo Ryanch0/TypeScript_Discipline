@@ -215,3 +215,23 @@ const test2 = ({ user, comment, admin }) => {
     console.log(user, comment, admin);
 };
 test2({ user: 'kim', comment: [3, 5, 4], admin: false });
+const fishFx = (animal) => {
+    if ('swim' in animal) { // 속성명 in obj  // or // obj instanceof 부모class
+        animal.swim;
+    }
+};
+// class 필드값
+// private : extends 된 class에서 사용 불가능, 자식들 사용 불가능
+// protected : extends 돤 class에서 사용 가능, 자식들 사용 불가능
+// static : 부모 class에서만 사용가능, 자식들에게 복사 안됨
+class User {
+    constructor() {
+        this.intro = User.skill + ' Expert';
+    }
+}
+User.skill = 'js';
+let chlid = new User();
+User.skill = 'Ps';
+let child2 = new User();
+console.log(chlid);
+console.log(child2);
