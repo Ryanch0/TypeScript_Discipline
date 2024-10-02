@@ -353,7 +353,7 @@ const GenericFunction = <T>(x : T[]):T => {
 GenericFunction<number>([4,2]) // 4
 GenericFunction<string>(['haha', 'ho']) // 'haha'
 
-// Generic function의 제한
+// Generic function의 제한 (constraints)
 
 function GenericFx<T extends unknown[]|string>(x:T){
     return x.length
@@ -361,3 +361,14 @@ function GenericFx<T extends unknown[]|string>(x:T){
 GenericFx([4,3,5])
 GenericFx('abcdefg')
 // GenericFx(123) // error
+
+// Generic 클래스에도 적용 가능
+class Person11<T> {
+    name;
+    constructor(a:T){
+      this.name = a;
+    }
+  }
+  let a = new Person11<string>('어쩌구');
+  a.name //string타입이 됐넹
+  

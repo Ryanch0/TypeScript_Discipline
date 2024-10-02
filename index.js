@@ -241,10 +241,18 @@ const GenericFunction = (x) => {
 };
 GenericFunction([4, 2]); // 4
 GenericFunction(['haha', 'ho']); // 'haha'
-// Generic function의 제한
+// Generic function의 제한 (constraints)
 function GenericFx(x) {
     return x.length;
 }
 GenericFx([4, 3, 5]);
 GenericFx('abcdefg');
 // GenericFx(123) // error
+// Generic 클래스에도 적용 가능
+class Person11 {
+    constructor(a) {
+        this.name = a;
+    }
+}
+let a = new Person11('어쩌구');
+a.name; //string타입이 됐넹
