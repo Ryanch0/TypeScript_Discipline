@@ -372,3 +372,20 @@ class Person11<T> {
   let a = new Person11<string>('어쩌구');
   a.name //string타입이 됐넹
   
+// arr tuple type , 타입의 자리까지 엄격하게 설정 가능
+const tuple: [string,number,boolean] = ['dd', 2, true]
+// tupetype 안에 ? 표기하고 싶다면 맨 마지막 위치부터
+
+// tuple type with spread operator
+type Arr = [string, number, ...boolean[]]
+let arr :Arr = ['동서녹차', 4000, true, false, true, true, false, true]; 
+
+
+// 외부 js 파일 사용할떄 (js -> ts)
+declare let aaa : number // index.html에 data.js 스크립트태그 처리하고 declare을 통해 재 선언후 에러 발생 방지
+console.log(aaa)
+
+// 외부 ts파일 사용할때 (ts -> ts)
+import { ccc } from "./data2" // 그냥 export import
+console.log(ccc) // 모든 ts파일은 글로벌 모듈임(ambient module)
+

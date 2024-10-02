@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 let project = {
     member: ['kim', 'park'],
     days: 30,
@@ -256,3 +258,10 @@ class Person11 {
 }
 let a = new Person11('어쩌구');
 a.name; //string타입이 됐넹
+// arr tuple type , 타입의 자리까지 엄격하게 설정 가능
+const tuple = ['dd', 2, true];
+let arr = ['동서녹차', 4000, true, false, true, true, false, true];
+console.log(aaa);
+// 외부 ts파일 사용할때 (ts -> ts)
+const data2_1 = require("./data2"); // 그냥 export import
+console.log(data2_1.ccc); // 모든 ts파일은 글로벌 모듈임(ambient module)
