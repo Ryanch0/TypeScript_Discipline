@@ -307,3 +307,17 @@ interface FX {
        return x-y
     }
  }
+
+// rest parameter는 출력시 arr 자료형으로 받아옴 (...연산자)
+const testFuc = (...params:number[]) => {
+    console.log(params)
+}
+testFuc(1,2,3,4,2,5,2,34)
+
+// Destructuring 타입지정(obj)
+type ExType2 = {user:string, comment : number[], admin:boolean}
+const test2 = ({user, comment, admin}:ExType2):void => {
+  console.log(user,comment,admin)
+}
+test2({ user : 'kim', comment : [3,5,4], admin : false })
+

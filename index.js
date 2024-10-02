@@ -206,3 +206,12 @@ const objEx = {
         return x - y;
     }
 };
+// rest parameter는 출력시 arr 자료형으로 받아옴 (...연산자)
+const testFuc = (...params) => {
+    console.log(params);
+};
+testFuc(1, 2, 3, 4, 2, 5, 2, 34);
+const test2 = ({ user, comment, admin }) => {
+    console.log(user, comment, admin);
+};
+test2({ user: 'kim', comment: [3, 5, 4], admin: false });
