@@ -2,6 +2,8 @@
     "compilerOptions": {
         "target": "ES6",
         "module": "CommonJS",
-        "strictNullChecks": true
+        "strictNullChecks": true,
+        "declaration": true, // 자동으로 d.ts파일 생성해주는 옵션 // 근데 수정하면안됨
+        // "typeRoots": ["./types"] // 이걸로 로컬모듈을 글로벌모듈로 만들어줄수있지만 그냥 귀찮아도 이거 쓰지마라
     }
 }

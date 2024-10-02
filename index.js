@@ -265,3 +265,12 @@ console.log(aaa);
 // 외부 ts파일 사용할때 (ts -> ts)
 const data2_1 = require("./data2"); // 그냥 export import
 console.log(data2_1.ccc); // 모든 ts파일은 글로벌 모듈임(ambient module)
+let user = {
+    name: 'cho',
+    age: 90,
+    location: 'suwon',
+    30: 'hhh'
+};
+let h = 'age'; // key값을 타입으로
+let k; // string
+let kk; // unknown

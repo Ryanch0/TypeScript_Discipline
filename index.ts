@@ -211,7 +211,7 @@ if (link instanceof HTMLAnchorElement) { // 링크 주소 바꾸려면
 let btn = document.querySelector('#button') // event달기
 let img = document.querySelector('#image')
 btn?.addEventListener('click', () => {
-    if(img instanceof HTMLSourceElement){
+    if (img instanceof HTMLSourceElement) {
         img.src = 'new.jpg'
     }
 })
@@ -231,32 +231,32 @@ btn?.addEventListener('click', () => {
 // console.log(nunu)
 
 class Person {
-    name:string //필드, 타입지정 가능
-    age:number
-    constructor(name:string,age:number){
+    name: string //필드, 타입지정 가능
+    age: number
+    constructor(name: string, age: number) {
         this.name = name //TS에서 오브젝트 키값을 선언할때 위에 필드값을 지정해줘야함
         this.age = age
     }
 
-    test(w:string):void{ // TS에서 프로토타입 작성하는 방법
+    test(w: string): void { // TS에서 프로토타입 작성하는 방법
         console.log('hello' + w)
     }
 
 }
-let man = new Person('sungwoo',90)
-let man2 = new Person('ryan',28)
+let man = new Person('sungwoo', 90)
+let man2 = new Person('ryan', 28)
 //클래스 예제
-type WordType = (number|string)
+type WordType = (number | string)
 class Word {
     num
     str
-    constructor(...args:WordType[]){
-        let numType:number[] = []
-        let strType:string[] = []
+    constructor(...args: WordType[]) {
+        let numType: number[] = []
+        let strType: string[] = []
         args.forEach(item => {
-            if(typeof item === 'number'){
+            if (typeof item === 'number') {
                 numType.push(item)
-            } else if(typeof item === 'string'){
+            } else if (typeof item === 'string') {
                 strType.push(item)
             }
         })
@@ -266,68 +266,68 @@ class Word {
 
     }
 }
-const testObj = new Word('kim',3,5,'park')
+const testObj = new Word('kim', 3, 5, 'park')
 console.log(testObj.num) // [3,5]
 console.log(testObj.str) // ['kim', 'park']
 
 //interface         //obj 타입지정할때 주로 사용
-interface Square  {color : string, width : number}
+interface Square { color: string, width: number }
 interface SquareExtend extends Square {
-    height : number
+    height: number
 }
-let box:Square = {color : 'red', width : 300}
-let box2:SquareExtend = {height : 333, color : 'white', width : 400}
+let box: Square = { color: 'red', width: 300 }
+let box2: SquareExtend = { height: 333, color: 'white', width: 400 }
 
 
-type Animal = {name : string}
-type Cat = {age : number} & Animal // {age : number, name : string}
+type Animal = { name: string }
+type Cat = { age: number } & Animal // {age : number, name : string}
 
 // interface의 extend와 , type의 & 기호 사용이 뭐가 다른가?
 // 똑같이 작용함.
 
 // 하지만 interface는 중복선언을 허용함 (타입이 합쳐짐) <-> 타입은 중복선언 불가(엄격함)
 interface Hi {
-    name : string
+    name: string
 }
 interface Hi {
-    age : number
+    age: number
 }
 // 여기서 Hi의 타입선언은 {name : string, age : number}이 됨
 
 
 interface FX {
-    plus : (x:number, y: number) => number,
-    minus : (x:number, y: number) => number,
- }
- 
- const objEx:FX = { // interface로 함수타입도 타입지정가능
-    plus(x,y){
-       return x+y
+    plus: (x: number, y: number) => number,
+    minus: (x: number, y: number) => number,
+}
+
+const objEx: FX = { // interface로 함수타입도 타입지정가능
+    plus(x, y) {
+        return x + y
     },
-    minus(x, y){
-       return x-y
+    minus(x, y) {
+        return x - y
     }
- }
+}
 
 // rest parameter는 출력시 arr 자료형으로 받아옴 (...연산자)
-const testFuc = (...params:number[]) => {
+const testFuc = (...params: number[]) => {
     console.log(params)
 }
-testFuc(1,2,3,4,2,5,2,34)
+testFuc(1, 2, 3, 4, 2, 5, 2, 34)
 
 // Destructuring 타입지정(obj)
-type ExType2 = {user:string, comment : number[], admin:boolean}
-const test2 = ({user, comment, admin}:ExType2):void => {
-  console.log(user,comment,admin)
+type ExType2 = { user: string, comment: number[], admin: boolean }
+const test2 = ({ user, comment, admin }: ExType2): void => {
+    console.log(user, comment, admin)
 }
-test2({ user : 'kim', comment : [3,5,4], admin : false })
+test2({ user: 'kim', comment: [3, 5, 4], admin: false })
 
 // Narrowing 심화
-type Fish = {swim: string}
-type Bird = {fly : string}
+type Fish = { swim: string }
+type Bird = { fly: string }
 const fishFx = (animal: Fish | Bird) => {
-    if('swim' in animal){ // 속성명 in obj  // or // obj instanceof 부모class
-        animal.swim 
+    if ('swim' in animal) { // 속성명 in obj  // or // obj instanceof 부모class
+        animal.swim
     }
 }
 
@@ -338,54 +338,109 @@ const fishFx = (animal: Fish | Bird) => {
 class User {
     static skill = 'js'
     intro = User.skill + ' Expert'
-  }
-  let chlid = new User()
-  User.skill = 'Ps'
-  let child2 = new User()
-  console.log(chlid)
-  console.log(child2)
+}
+let chlid = new User()
+User.skill = 'Ps'
+let child2 = new User()
+console.log(chlid)
+console.log(child2)
 
-  
+
 // Generic function
-const GenericFunction = <T>(x : T[]):T => {
+const GenericFunction = <T>(x: T[]): T => {
     return x[0]
 }
-GenericFunction<number>([4,2]) // 4
+GenericFunction<number>([4, 2]) // 4
 GenericFunction<string>(['haha', 'ho']) // 'haha'
 
 // Generic function의 제한 (constraints)
 
-function GenericFx<T extends unknown[]|string>(x:T){
+function GenericFx<T extends unknown[] | string>(x: T) {
     return x.length
 }
-GenericFx([4,3,5])
+GenericFx([4, 3, 5])
 GenericFx('abcdefg')
 // GenericFx(123) // error
 
 // Generic 클래스에도 적용 가능
 class Person11<T> {
     name;
-    constructor(a:T){
-      this.name = a;
+    constructor(a: T) {
+        this.name = a;
     }
-  }
-  let a = new Person11<string>('어쩌구');
-  a.name //string타입이 됐넹
-  
+}
+let a = new Person11<string>('어쩌구');
+a.name //string타입이 됐넹
+
 // arr tuple type , 타입의 자리까지 엄격하게 설정 가능
-const tuple: [string,number,boolean] = ['dd', 2, true]
+const tuple: [string, number, boolean] = ['dd', 2, true]
 // tupetype 안에 ? 표기하고 싶다면 맨 마지막 위치부터
 
 // tuple type with spread operator
 type Arr = [string, number, ...boolean[]]
-let arr :Arr = ['동서녹차', 4000, true, false, true, true, false, true]; 
+let arr: Arr = ['동서녹차', 4000, true, false, true, true, false, true];
 
 
 // 외부 js 파일 사용할떄 (js -> ts)
-declare let aaa : number // index.html에 data.js 스크립트태그 처리하고 declare을 통해 재 선언후 에러 발생 방지
+declare let aaa: number // index.html에 data.js 스크립트태그 처리하고 declare을 통해 재 선언후 에러 발생 방지
 console.log(aaa)
 
 // 외부 ts파일 사용할때 (ts -> ts)
 import { ccc } from "./data2" // 그냥 export import
 console.log(ccc) // 모든 ts파일은 글로벌 모듈임(ambient module)
+// 글로벌 모듈을 로컬 모듈로 만들기 (중복되어 재선언이 불가하므로)
+
+
+
+// d.ts파일 --> 타입저장하는 파일 그 이상 그 이하도 아님 // 로컬모듈임 항상 export import
+import { PersonT } from "./testEx"
+
+type HAHA = string
+
+
+
+// index signature, obj를 다 싸잡아서 타입 지정하고싶을때
+interface StringOnly {
+    [key: string | number]: string | number
+}
+
+let user: StringOnly = {
+    name: 'cho',
+    age: 90,
+    location: 'suwon',
+    30: 'hhh'
+}
+
+// keyof //key값을 모두 가져옴
+interface DDDD {
+    age: number,
+    name: string
+}
+type EEEE = keyof Person
+let h: EEEE = 'age' // key값을 타입으로
+
+
+// 타입 변환기 만들기 (mapping)
+type Trash = {
+    a: boolean,
+    b: boolean,
+    c: boolean
+}
+
+type TypeChanger<T, Type> = {
+    [key in keyof T]: Type // | string or something like that
+}
+
+type newTrash = TypeChanger<Trash, number>
+
+// 조건문으로 타입 지정
+type IF<T> = T extends string ? string : unknown // extends와 삼항연산자로 조건부 타입지정
+
+let k:IF<string> // string
+let kk:IF<number> // unknown
+
+
+// infer 키워드
+type Person4<T> = T extends (infer R)[] ? R : unknown
+type a = Person4<number[]> // arr 내부의 타입만 뽑고싶을때
 
