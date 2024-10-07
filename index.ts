@@ -182,6 +182,7 @@ const removeDash: RemoveType = (a) => {
     const num = a.replace(/-/g, '')
     return parseInt(num)
 }
+
 // 콜백함수를 타입 지정하기
 type FinalType = (num: string, cutFx: typeof cutZero, removeFx: typeof removeDash) => number
 const finalFunc: FinalType = (num, cutFx, removeFx) => {
@@ -248,8 +249,8 @@ let man2 = new Person('ryan', 28)
 //클래스 예제
 type WordType = (number | string)
 class Word {
-    num
-    str
+    num:number[]
+    str:string[]
     constructor(...args: WordType[]) {
         let numType: number[] = []
         let strType: string[] = []
@@ -260,7 +261,6 @@ class Word {
                 strType.push(item)
             }
         })
-
         this.num = numType
         this.str = strType
 
@@ -364,7 +364,7 @@ GenericFx('abcdefg')
 
 // Generic 클래스에도 적용 가능
 class Person11<T> {
-    name;
+    name:T
     constructor(a: T) {
         this.name = a;
     }
@@ -443,4 +443,6 @@ let kk:IF<number> // unknown
 // infer 키워드
 type Person4<T> = T extends (infer R)[] ? R : unknown
 type a = Person4<number[]> // arr 내부의 타입만 뽑고싶을때
+
+type b = ReturnType<() => void>
 
